@@ -66,7 +66,7 @@ const managerPrompt = () => {
       },
     ])
     .then((managerInput) => {
-      console.log(managerInput);
+      // console.log(managerInput);
       let manager = new Manager(managerInput);
       teamList.push(manager);
 

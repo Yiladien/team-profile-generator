@@ -1,46 +1,48 @@
-const Manager = require("../lib/Manager");
+const Manager = require("../lib/Manager.js");
 const Employee = require("../lib/Employee.js");
 
-jest.mock("../lib/Employee.js");
+// jest.mock("../lib/Employee.js");
+// jest.mock("../lib/Manager.js");
+
+mockData = {
+  name: "Dave",
+  id: "13",
+  email: "dave@testers.com",
+  officeNumber: "2504",
+};
+
+console.log(mockData);
 
 test("create manager object", () => {
-  const manager = new Manager("Dave", "13", "dave@testers.com", "2405");
+  const manager = new Manager(mockData);
 
-  expect(manager.name).toBe(`Dave`);
-  expect(manager.id).toBe(`13`);
-  expect(manager.email).toBe(`dave@testers.com`);
-  expect(manager.id).toEqual(expect.any(Number));
-  expect(manager.email).toContain(`@`);
-  expect(manager.email).toContain(`.`);
-  expect(manager.officeNumber).toEqual(expect.any(Number));
+  expect(Number(manager.officeNumber)).toEqual(expect.any(Number));
 });
 
 test("gets Manager name", () => {
-  const manager = new Manager("Dave", "13", "dave@testers.com", "2405");
+  const manager = new Manager(mockData);
 
-  expect(manager.getName()).toEqual(expect.stringContaining(manager.name));
+  expect(manager.getName()).toEqual(mockData.name);
 });
 
 test("gets Manager Id", () => {
-  const manager = new Manager("Dave", "13", "dave@testers.com", "2405");
+  const manager = new Manager(mockData);
 
-  expect(manager.getId()).toEqual(
-    expect.stringContaining(manager.id.toString())
-  );
+  expect(manager.getId()).toEqual(expect.stringContaining(mockData.id));
 });
 
 test("gets Manager Office Number", () => {
-  const manager = new Manager("Dave", "13", "dave@testers.com", "2405");
+  const manager = new Manager(mockData);
 
   expect(manager.getOfficeNumber()).toEqual(
-    expect.stringContaining(manager.officeNumber.toString())
+    expect.stringContaining(mockData.officeNumber)
   );
 });
 
 test("gets Manager Email", () => {
-  const manager = new Manager("Dave", "13", "dave@testers.com", "2405");
+  const manager = new Manager(mockData);
 
-  expect(manager.getEmail()).toEqual(expect.stringContaining(manager.email));
+  expect(manager.getEmail()).toEqual(expect.stringContaining(mockData.email));
 });
 
 test("gets Manager Object", () => {
@@ -54,4 +56,16 @@ test("gets Manager Object", () => {
       "2405"
     )
   ).toBeInstanceOf(Employee);
+});
+
+test("gets icon", () => {
+  const manager = new Manager(mockData);
+
+  expect(manager.getIcon()).toEqual(expect.any(String));
+});
+
+test("gets role", () => {
+  const engineer = new Manager(mockData);
+
+  expect(engineer.getRole()).toEqual("Manager");
 });
