@@ -31,10 +31,8 @@ test("gets Employee Email", () => {
   expect(employee.getEmail()).toEqual(expect.stringContaining(employee.email));
 });
 
-test("gets Employee Object", () => {
-  //   const employee = new Employee(`Dave`, "13", `dave@tester.com`);
+test("gets Employee role", () => {
+  const employee = new Employee(`Dave`, "13", `dave@tester.com`);
 
-  expect(new Employee(`Dave`, "13", `dave@tester.com`)).toBeInstanceOf(
-    Employee
-  );
+  expect(employee.getRole()).toBe(`Employee`);
 });
